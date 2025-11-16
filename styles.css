@@ -1,0 +1,271 @@
+:root {
+  --blue: #70b5ff;
+  --pink: #ff94d6;
+  --yellow: #ffd66b;
+  --green: #8be089;
+  --bg: linear-gradient(135deg, #c3f0ff, #ffe6f7, #fff8d2);
+  --card: #ffffffcc;
+  --text: #2f2a4a;
+  --accent: #6b5b95;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Fredoka', 'Baloo 2', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  width: 100%;
+  max-width: 1080px;
+  padding: 16px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: linear-gradient(90deg, #7dd3fc, #ffd1e3);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px #0000001a;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+}
+
+.tagline {
+  margin: 4px 0 0;
+  opacity: 0.8;
+}
+
+.mascot {
+  font-size: 42px;
+  background: #fff;
+  border-radius: 50%;
+  width: 68px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 20px #0000001a;
+}
+
+.music-toggle {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px #00000022;
+}
+
+.profile-bar {
+  margin: 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.profiles .chip {
+  background: #fff;
+  border: 2px solid var(--blue);
+  border-radius: 20px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.profiles .chip.active,
+.profiles .chip:hover {
+  transform: translateY(-2px);
+  background: #e0f2ff;
+}
+
+.active-profile {
+  font-weight: 600;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 22px;
+  padding: 16px;
+  box-shadow: 0 12px 30px #0000001a;
+  margin-bottom: 16px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grid-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.big-btn {
+  border: none;
+  border-radius: 20px;
+  padding: 18px;
+  font-size: 1.05rem;
+  background: linear-gradient(120deg, #7dd3fc, #ffb7e5);
+  color: #2f2a4a;
+  cursor: pointer;
+  box-shadow: 0 10px 20px #0000001a;
+}
+
+.big-btn:hover {
+  transform: translateY(-2px);
+}
+
+.hidden {
+  display: none;
+}
+
+.chat-window {
+  background: #f9fbff;
+  border-radius: 16px;
+  padding: 12px;
+  min-height: 280px;
+  max-height: 360px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+
+.message {
+  margin: 8px 0;
+  padding: 10px 12px;
+  border-radius: 16px;
+  max-width: 80%;
+}
+
+.me { background: #e0f2ff; margin-left: auto; }
+.ai { background: #fff1f9; border: 1px solid #ffd1e3; }
+
+.chat-controls {
+  display: grid;
+  grid-template-columns: 1fr 3fr repeat(2, 110px);
+  gap: 10px;
+}
+
+.speak-mode {
+  margin-top: 14px;
+  background: #e0f7ff;
+  border-radius: 14px;
+  padding: 10px;
+  border: 1px solid #b6ecff;
+}
+
+.speak-row {
+  display: grid;
+  grid-template-columns: 1fr repeat(2, 120px);
+  gap: 10px;
+}
+
+.chat-controls input,
+.chat-controls select,
+.chat-controls button,
+input,
+textarea,
+select {
+  border-radius: 14px;
+  border: 2px solid #e4e8f0;
+  padding: 10px 12px;
+  font-size: 1rem;
+}
+
+.chat-controls button {
+  background: #ffd66b;
+  border: none;
+  cursor: pointer;
+}
+
+.hint {
+  background: #fff7e1;
+  border-radius: 14px;
+  padding: 10px;
+  border: 1px dashed #ffc341;
+}
+
+.subject-content {
+  margin-top: 12px;
+  background: #f6f6ff;
+  border-radius: 16px;
+  padding: 12px;
+  border: 1px solid #e0ddff;
+}
+
+.practice-question {
+  font-size: 1.1rem;
+  margin: 12px 0;
+  background: #fffbe7;
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.feedback { margin-top: 8px; font-weight: 600; }
+.report { margin-top: 10px; background: #f4f9ff; padding: 10px; border-radius: 12px; }
+
+.tabs { display: flex; gap: 10px; margin-bottom: 12px; }
+.tab { padding: 10px 14px; border-radius: 12px; border: 2px solid #dfe4f0; background: #fff; cursor: pointer; }
+.tab.active { background: #ffe6f7; border-color: #ffb7e5; }
+.tab-pane { background: #f9fbff; padding: 10px; border-radius: 12px; }
+
+.match-pairs { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+.pair-card { background: #fff; border: 2px solid #dfe4f0; border-radius: 14px; padding: 10px; cursor: pointer; text-align: center; }
+.pair-card.matched { background: #d7ffd9; }
+
+.scrambled { font-size: 1.4rem; letter-spacing: 6px; background: #fff; padding: 10px; border-radius: 12px; display: inline-block; }
+
+.flashcard { margin-top: 12px; background: linear-gradient(160deg, #fff1f9, #e0f7ff); border-radius: 18px; padding: 20px; text-align: center; }
+.flash-emoji { font-size: 64px; }
+.flash-word { font-size: 1.8rem; margin: 8px 0; }
+.flash-sentence { opacity: 0.9; }
+
+.progress-bars { display: grid; gap: 12px; }
+.progress-item { background: #fff; border-radius: 16px; padding: 12px; border: 1px solid #e0e5f5; }
+.bar { height: 12px; border-radius: 10px; background: #e5e7eb; overflow: hidden; }
+.bar-inner { height: 100%; background: linear-gradient(90deg, #8be089, #ffd66b); }
+
+.admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.admin-grid textarea { min-height: 120px; }
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffd66b;
+  padding: 12px 16px;
+  border-radius: 14px;
+  box-shadow: 0 12px 20px #0000001a;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.toast.hidden { opacity: 0; pointer-events: none; transform: translate(-50%, 10px); }
+.toast.show { opacity: 1; }
+
+.back { border: none; background: #e0f2ff; border-radius: 12px; padding: 8px 12px; cursor: pointer; }
+
+@media (max-width: 720px) {
+  .chat-controls { grid-template-columns: 1fr; }
+  .speak-row { grid-template-columns: 1fr; }
+  .app-header { flex-direction: column; gap: 10px; align-items: flex-start; }
+  .music-toggle { align-self: flex-end; }
+}
