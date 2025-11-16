@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kids Learning Assistant</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Baloo+2:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <audio id="bg-music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/08/08/audio_01825a6b69.mp3?filename=happy-kids-113988.mp3" type="audio/mpeg">
+  </audio>
+  <div class="app">
+    <header class="app-header">
+      <div class="mascot">🦉</div>
+      <div>
+        <h1>Rainbow Learning Buddy</h1>
+        <p class="tagline">For Grades 1-4 • Fun • Safe • Smart</p>
+      </div>
+      <button class="music-toggle" id="musicToggle" aria-label="Toggle music">🎵</button>
+    </header>
+
+    <section class="profile-bar">
+      <p>Choose your profile:</p>
+      <div class="profiles" id="profiles">
+        <button class="chip" data-profile="Bebo">Bebo 🧢</button>
+        <button class="chip" data-profile="Fatima">Fatima 🎀</button>
+        <button class="chip" data-profile="Zidane">Zidane 🏀</button>
+      </div>
+      <span id="activeProfile" class="active-profile">Active: Bebo</span>
+    </section>
+
+    <main>
+      <section id="home" class="card">
+        <h2>Welcome! What would you like to do?</h2>
+        <div class="grid-buttons">
+          <button class="big-btn" data-target="chat">1) Ask a Question 💬</button>
+          <button class="big-btn" data-target="subjects">2) Choose a Subject 📚</button>
+          <button class="big-btn" data-target="practice">3) Daily Practice 🔥</button>
+          <button class="big-btn" data-target="games">4) Games 🎮</button>
+          <button class="big-btn" data-target="flashcards">5) Flashcards 🖼️</button>
+          <button class="big-btn" data-target="progress">6) Progress Tracker 📈</button>
+          <button class="big-btn" data-target="admin">Parent Admin 🛠️</button>
+        </div>
+      </section>
+
+      <section id="chat" class="card hidden">
+        <div class="card-header">
+          <h2>Chat Tutor 🤖</h2>
+          <button class="back" data-target="home">⬅ Back</button>
+        </div>
+        <p class="hint">السؤال بالعربي أو بالإنجليزي؟ أنا هنا للمساعدة! (Safe mode on)</p>
+        <div class="chat-window" id="chatWindow"></div>
+        <div class="chat-controls">
+          <select id="chatSubject">
+            <option value="General">General</option>
+            <option value="Math">Math</option>
+            <option value="English">English</option>
+            <option value="Arabic">Arabic</option>
+            <option value="Science">Science</option>
+            <option value="Social Studies">Social Studies</option>
+          </select>
+          <input id="chatInput" type="text" placeholder="Type your question..." />
+          <button id="chatSend">Send</button>
+          <button id="chatSpeak">🔊 Speak</button>
+        </div>
+        <div class="speak-mode">
+          <h3>Speak with AI (English pronunciation) 🔊</h3>
+          <p>Say a simple word and get friendly feedback.</p>
+          <div class="speak-row">
+            <input id="speakInput" type="text" placeholder="Tap mic and speak or type a word" />
+            <button id="speakListen">🎙️ Listen</button>
+            <button id="speakCheck">Check</button>
+          </div>
+          <div id="speakFeedback" class="feedback"></div>
+        </div>
+      </section>
+
+      <section id="subjects" class="card hidden">
+        <div class="card-header">
+          <h2>Choose a Subject 🎨</h2>
+          <button class="back" data-target="home">⬅ Back</button>
+        </div>
+        <div class="grid-buttons subjects">
+          <button class="big-btn subject-btn" data-subject="Math">Math ➗</button>
+          <button class="big-btn subject-btn" data-subject="English">English 🔤</button>
+          <button class="big-btn subject-btn" data-subject="Arabic">Arabic 🇪🇬</button>
+          <button class="big-btn subject-btn" data-subject="Science">Science 🔬</button>
+          <button class="big-btn subject-btn" data-subject="Social Studies">Social Studies 🌍</button>
+          <button class="big-btn subject-btn" data-subject="General Knowledge">General Knowledge 💡</button>
+        </div>
+        <div id="subjectContent" class="subject-content"></div>
+      </section>
+
+      <section id="practice" class="card hidden">
+        <div class="card-header">
+          <h2>Daily Practice 🔥</h2>
+          <button class="back" data-target="home">⬅ Back</button>
+        </div>
+        <p>Answer 5 questions. Earn stars ⭐ for correct answers!</p>
+        <div id="practiceQuestion" class="practice-question"></div>
+        <input id="practiceAnswer" type="text" placeholder="Your answer" />
+        <button id="practiceSubmit">Submit</button>
+        <div id="practiceFeedback" class="feedback"></div>
+        <div id="practiceReport" class="report"></div>
+      </section>
+
+      <section id="games" class="card hidden">
+        <div class="card-header">
+          <h2>Educational Games 🎲</h2>
+          <button class="back" data-target="home">⬅ Back</button>
+        </div>
+        <div class="tabs">
+          <button class="tab active" data-tab="match">Matching Game</button>
+          <button class="tab" data-tab="quickmath">Quick Math</button>
+          <button class="tab" data-tab="wordbuilder">Word Builder</button>
+        </div>
+        <div id="match" class="tab-pane active">
+          <p>Match the word with the picture!</p>
+          <div id="matchPairs" class="match-pairs"></div>
+        </div>
+        <div id="quickmath" class="tab-pane hidden">
+          <p>Solve as many as you can in 20 seconds!</p>
+          <div id="quickMathQuestion" class="practice-question"></div>
+          <input id="quickMathAnswer" type="number" />
+          <button id="quickMathSubmit">Answer</button>
+          <div id="quickMathTimer">20</div>
+          <div id="quickMathScore">Score: 0</div>
+        </div>
+        <div id="wordbuilder" class="tab-pane hidden">
+          <p>Put the letters in the correct order.</p>
+          <div id="scrambledWord" class="scrambled"></div>
+          <input id="wordBuilderAnswer" type="text" placeholder="Type the word" />
+          <button id="wordBuilderSubmit">Check</button>
+          <div id="wordBuilderFeedback" class="feedback"></div>
+        </div>
+      </section>
+
+      <section id="flashcards" class="card hidden">
+        <div class="card-header">
+          <h2>Flashcards 🃏</h2>
+          <button class="back" data-target="home">⬅ Back</button>
+        </div>
+        <div class="flashcard-controls">
+          <select id="flashcardCategory">
+            <option value="english">English Vocabulary</option>
+            <option value="arabic">Arabic Words</option>
+            <option value="science">Science Terms</option>
+            <option value="basics">Shapes & Colors & Animals</option>
+            <option value="math">Multiplication</option>
+          </select>
+          <button id="nextFlashcard">Next ➡️</button>
+        </div>
+        <div id="flashcard" class="flashcard">
+          <div class="flash-emoji" id="flashEmoji">😀</div>
+          <div class="flash-word" id="flashWord">Hello</div>
+          <div class="flash-sentence" id="flashSentence">Say hello to your friend.</div>
+          <button id="flashSpeak">🔊 Pronounce</button>
+        </div>
+      </section>
+
+      <section id="progress" class="card hidden">
+        <div class="card-header">
+          <h2>Progress Tracker 📈</h2>
+          <button class="back" data-target="home">⬅ Back</button>
+        </div>
+        <div id="progressSummary" class="progress-bars"></div>
+      </section>
+
+      <section id="admin" class="card hidden">
+        <div class="card-header">
+          <h2>Parent Admin 🛠️</h2>
+          <button class="back" data-target="home">⬅ Back</button>
+        </div>
+        <div class="admin-grid">
+          <div>
+            <h3>Add Question</h3>
+            <input id="adminQuestion" placeholder="Question" />
+            <input id="adminAnswer" placeholder="Answer" />
+            <select id="adminSubject">
+              <option>Math</option><option>English</option><option>Arabic</option><option>Science</option><option>Social Studies</option><option>General Knowledge</option>
+            </select>
+            <button id="adminAddQuestion">Add</button>
+          </div>
+          <div>
+            <h3>Add Vocabulary</h3>
+            <input id="adminVocab" placeholder="Word" />
+            <input id="adminMeaning" placeholder="Meaning" />
+            <button id="adminAddVocab">Add</button>
+          </div>
+          <div>
+            <h3>Add Flashcard</h3>
+            <input id="adminFlashWord" placeholder="Word" />
+            <input id="adminFlashSentence" placeholder="Sentence" />
+            <input id="adminFlashEmoji" placeholder="Emoji" />
+            <select id="adminFlashCategory">
+              <option value="english">English</option>
+              <option value="arabic">Arabic</option>
+              <option value="science">Science</option>
+              <option value="basics">Basics</option>
+              <option value="math">Math</option>
+            </select>
+            <button id="adminAddFlash">Add</button>
+          </div>
+          <div>
+            <h3>Add Lesson</h3>
+            <textarea id="adminLesson" placeholder="Short lesson text"></textarea>
+            <button id="adminAddLesson">Save Lesson</button>
+          </div>
+          <div>
+            <h3>AI Settings</h3>
+            <p class="hint">Store your OpenAI API key safely on this device.</p>
+            <input id="adminApiKey" placeholder="OpenAI API Key" type="password" />
+            <button id="adminSaveApi">Save Key</button>
+            <small id="adminApiStatus" class="hint"></small>
+          </div>
+          <div>
+            <h3>View Progress</h3>
+            <pre id="adminProgress"></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="toast" class="toast hidden">Good job! ⭐</div>
+  <script src="script.js"></script>
+</body>
+</html>
